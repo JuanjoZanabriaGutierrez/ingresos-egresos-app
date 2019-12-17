@@ -4,6 +4,7 @@ import { LoginComponent } from "./auth/login/login.component";
 import { RegisterComponent } from "./auth/register/register.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { rutasDashboard } from "./dashboard/dashboard.routes";
+import { AuthGuardService } from "./auth/auth-guard.guard";
 
 const rutas: Routes = [
   {
@@ -17,7 +18,8 @@ const rutas: Routes = [
   {
     path: "",
     component: DashboardComponent,
-    children: rutasDashboard
+    children: rutasDashboard,
+    canActivate: [AuthGuardService]
   },
   {
     path: "**",
