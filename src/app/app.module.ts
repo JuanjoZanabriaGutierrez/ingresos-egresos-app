@@ -4,7 +4,7 @@ import { NgModule } from "@angular/core";
 
 //Modules
 import { AppRoutingModule } from "./app.routing.module";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 //NgRx
 import { StoreModule } from "@ngrx/store";
@@ -15,6 +15,9 @@ import { appReducers } from "./app.reducer";
 import { AngularFireModule } from "@angular/fire";
 import { AngularFirestoreModule } from "@angular/fire/firestore";
 import { AngularFireAuthModule } from "@angular/fire/auth";
+
+//Graficas
+import { ChartsModule } from "ng2-charts";
 
 //Environment
 import { environment } from "src/environments/environment";
@@ -30,6 +33,7 @@ import { EstadisticaComponent } from "./ingreso-egreso/estadistica/estadistica.c
 import { FooterComponent } from "./shared/footer/footer.component";
 import { NavbarComponent } from "./shared/navbar/navbar.component";
 import { SidebarComponent } from "./shared/sidebar/sidebar.component";
+import { OrdenIngresoEgresoPipe } from "./ingreso-egreso/orden-ingreso-egreso.pipe";
 
 @NgModule({
   declarations: [
@@ -42,15 +46,18 @@ import { SidebarComponent } from "./shared/sidebar/sidebar.component";
     EstadisticaComponent,
     FooterComponent,
     NavbarComponent,
-    SidebarComponent
+    SidebarComponent,
+    OrdenIngresoEgresoPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
+    ChartsModule,
     StoreModule.forRoot(appReducers),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
